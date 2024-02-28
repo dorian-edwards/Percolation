@@ -1,3 +1,3 @@
 export default function App() {
-  return <div className='text-[#F00]'>hello world</div>
+  return <div>Hello World</div>
 }
