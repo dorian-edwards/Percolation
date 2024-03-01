@@ -1,9 +1,26 @@
+import IllegalArgumentException from './IllegalArgumentException'
+import WeightedQuickUnion from './WeightedQuickUnion'
+
 export default class Percolation {
-  #grid: number[]
+  #grid: boolean[]
+  #openSites: number
+  #gridSize: number
+  #weightedQuickUnion: WeightedQuickUnion
+  #top: number
+  #bottom: number
 
   // creates n-by-n grid, with all sites initially blocked
   constructor(n: number) {
-    this.#grid = new Array(n)
+    if (n <= 0) throw new IllegalArgumentException()
+
+    this.#openSites = 0
+    this.#gridSize = n * n
+    this.#grid = new Array(this.#gridSize)
+    this.#weightedQuickUnion = new WeightedQuickUnion(this.#gridSize + 2)
+    this.#top = this.#gridSize
+    this.#bottom = this.#gridSize + 1
+
+    for (let i = 0; i < this.#gridSize; i++) this.#grid[i] = false
   }
 
   // opens the site (row, col) if it is not open already
@@ -28,4 +45,7 @@ export default class Percolation {
   percolates(): boolean {
     throw new Error('Function not implemented')
   }
+
+  // utility functions
+  
 }
