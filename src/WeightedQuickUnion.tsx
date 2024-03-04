@@ -14,6 +14,7 @@ export default class WeightedQuickUnion {
     }
   }
 
+  // Find root of p
   find(p: number) {
     let target = p
     while (target !== this.#data[target]) target = this.#data[target]
@@ -21,6 +22,7 @@ export default class WeightedQuickUnion {
     return target
   }
 
+  // Return boolean value indicating if points p and q are connected
   connected(p: number, q: number): boolean {
     return this.find(p) === this.find(q)
   }
